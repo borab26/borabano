@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-img
+spec:
+  selector:
+    matchLabels:
+      app: backend-img
+      tier: backend
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: backend-img
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: backend-img
+          image: bora2612b/bora:my-bck
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: backend-img
+    tier: backend
+    track: stable
+  type: ClusterIP
+status:
+  loadBalancer: {}
