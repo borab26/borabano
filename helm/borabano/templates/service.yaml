@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "borabano.fullname" . }}
+  namespace: {{ template "borabano.name" . }}
+  labels:
+    app: {{ template "borabano.name" . }}
+    chart: {{ template "borabano.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "borabano.name" . }}
+    release: {{ .Release.Name }}
+
