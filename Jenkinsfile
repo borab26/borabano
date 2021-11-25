@@ -31,6 +31,7 @@ pipeline {
 						REPO_NAME="borabano"
 						ACR_LOGINSERVER="mycontainerregistrybbano.azurecr.io"
                         ACR_ID="/subscriptions/d76100e8-9e78-401e-83b2-4ab9965307f7/resourceGroups/borabano26/providers/Microsoft.ContainerRegistry/registries/myContainerRegistryBBANO"
+                        ACR_PASSWORD="myContainerRegistryBBANO"
                         ACR_PASSWORD="Rquuizy2MAomlKxecbUaUe2CblT+E1U5"
 						IMAGE_NAME="$ACR_LOGINSERVER/$REPO_NAME:jenkins${BUILD_NUMBER}"
 						#Docker build and push to Azure Container Registry
@@ -74,6 +75,14 @@ pipeline {
 			}
 		}
 	}
+
+
+
+
+
+
+
+
 
 
 
